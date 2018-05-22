@@ -1,0 +1,39 @@
+Mutation:
+    type: object
+    config:
+        fields:
+            registerExample:
+                type: Boolean
+                args:
+                    name:
+                        type: String!
+                    arr:
+                        type: [String!]
+#                    arr:
+#                        type: String!
+                resolve: >
+                    @=service("tactician.commandbus.mutation")
+                        .handle(
+                            newObject("App\\Service\\Example\\Command\\ExampleCommand", [
+                                args["name"],
+                                args["arr"]
+                            ])
+                        )
+#            example:
+#                type: Book
+#                args:
+#                    name:
+#                        type: String!
+#                    arr:
+#                        type: String!
+#                    nuId:
+#                        type: Category!
+#                resolve: >
+#                    @=service("tactician.commandbus.mutation")
+#                        .handle(
+#                            newObject("App\\Service\\Example\\Command\\ExampleCommand", [
+#                                args["name"],
+#                                args["arr"],
+#                                args["nuId"]
+#                            ])
+#                        )

@@ -1,0 +1,7 @@
+Query:
+    type: object
+    config:
+        fields:
+            example:
+                type: "[Example]"
+                resolve: '@=service("App\\Repository\\ExampleRepository").findAll()'
