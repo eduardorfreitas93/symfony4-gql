@@ -1,7 +1,15 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        database:
+            entity:
+                class: App\Entity\User
+                property: email
+
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+            cost: 12
 
     firewalls:
         dev:
