@@ -7,16 +7,15 @@ Mutation:
                 args:
                     name:
                         type: String!
-                    arr:
-                        type: [String!]
-#                    arr:
-#                        type: String!
+                    nuId:
+                        type: Int!
                 resolve: >
                     @=service("tactician.commandbus.mutation")
                         .handle(
                             newObject("App\\Service\\Example\\Command\\ExampleCommand", [
+                                getUser(),
                                 args["name"],
-                                args["arr"]
+                                args["nuId"]
                             ])
                         )
 #            example:

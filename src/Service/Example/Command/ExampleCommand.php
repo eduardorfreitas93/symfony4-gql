@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Service\Example\Command;
 
+use App\Entity\User;
+
 class ExampleCommand
 {
     /**
@@ -16,33 +18,19 @@ class ExampleCommand
     private $nuId;
 
     /**
-     * @var array
+     * @var User
      */
-    private $arr;
-
-    /**
-     * @var boolean
-     */
-    private $boolFl;
-
-    /**
-     * @var float
-     */
-    private $numValue;
+    private $user;
 
     public function __construct(
+        User $user,
         string $name,
-        int $nuId,
-        array $arr,
-        bool $boolFl,
-        float $numValue
+        int $nuId
     )
     {
+        $this->user = $user;
         $this->name = $name;
         $this->nuId = $nuId;
-        $this->arr = $arr;
-        $this->boolFl = $boolFl;
-        $this->numValue = $numValue;
     }
 
     /**
@@ -61,27 +49,8 @@ class ExampleCommand
         return $this->nuId;
     }
 
-    /**
-     * @return array
-     */
-    public function getArr(): array
+    public function getUser(): User
     {
-        return $this->arr;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isBoolFl(): bool
-    {
-        return $this->boolFl;
-    }
-
-    /**
-     * @return float
-     */
-    public function getNumValue(): float
-    {
-        return $this->numValue;
+        return $this->user;
     }
 }

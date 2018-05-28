@@ -1,0 +1,18 @@
+User:
+  type: object
+  inherits: [ProtectedUser]
+  config:
+    description: "Usuário"
+    fields:
+      username:
+        type: String
+        description: "nome"
+      password:
+        type: String
+        description: "Senha"
+      email:
+        type: String
+        description: "email"
+      isEnabled:
+        type: Boolean
+        description: "Usuário ativo no sistema"

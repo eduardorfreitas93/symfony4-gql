@@ -1,7 +1,0 @@
-type Example {
-  name: String!
-  nuId: Int!
-  arr: [String]!
-  boolFl: Bool!
-  numValue: Float!
-}

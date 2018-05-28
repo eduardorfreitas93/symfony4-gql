@@ -26,5 +26,5 @@ abstract class AbstractRepository extends ServiceEntityRepository
         $this->_em->persist($object);
     }
 
-    abstract public  function getEntityClassName(): string;
+    abstract public function getEntityClassName(): string;
 }

@@ -14,7 +14,7 @@ class User implements AdvancedUserInterface
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -34,12 +34,28 @@ class User implements AdvancedUserInterface
     private $email;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="user")
+     * @ORM\JoinTable(name="user_has_role",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="role_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $roles;
+
+    /**
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
 
     public function __construct()
     {
+        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->isActive = true;
     }
 
@@ -48,19 +64,35 @@ class User implements AdvancedUserInterface
         return $this->username;
     }
 
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+
     public function getSalt()
     {
         return null;
     }
 
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
     public function getPassword()
     {
         return $this->password;
-    }
-
-    public function getRoles()
-    {
-        return array('ROLE_USER');
     }
 
     public function eraseCredentials()
@@ -80,6 +112,24 @@ class User implements AdvancedUserInterface
     public function isCredentialsNonExpired()
     {
         return true;
+    }
+
+    public function getRoles(): array
+    {
+        foreach ($this->roles as $role) {
+            $roles[] = $role->getRole();
+        }
+
+        return $roles;
+    }
+
+    public function addRole(Role $role): self
+    {
+        if (!$this->roles->contains($role)) {
+            $this->roles->add($role);
+        }
+
+        return $this;
     }
 
     public function isEnabled()

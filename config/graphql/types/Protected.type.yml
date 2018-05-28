@@ -1,0 +1,6 @@
+ProtectedUser:
+  type: object
+  decorator: true
+  config:
+      fields:
+        password: {type: String, access: "@=hasRole('ROLE_ADMIN')"}

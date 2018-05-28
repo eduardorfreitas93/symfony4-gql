@@ -8,7 +8,7 @@
         "league/tactician-doctrine": "^1.1",
         "lexik/jwt-authentication-bundle": "^2.4",
         "nelmio/cors-bundle": "^1.5",
-        "overblog/graphql-bundle": "^0.11.0",
+        "overblog/graphql-bundle": "dev-master",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/console": "^4.0",
         "symfony/flex": "^1.0",
@@ -20,6 +20,7 @@
         "symfony/yaml": "^4.0"
     },
     "require-dev": {
+        "overblog/graphiql-bundle": "^0.1.0",
         "symfony/dotenv": "^4.0"
     },
     "config": {
